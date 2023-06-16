@@ -1,0 +1,318 @@
+Iniciamos git:
+git init
+
+Estamos en rama master
+Cambiamos nombre rama a main:
+git branch -m main
+
+Ver el estado de git:
+> git status
+
+Añadimos archivo:
+git add hellogit.py
+
+Para añadir todos:
+git add .
+
+Añadimos commit:Añado Este es el primer commit
+>  git commit
+[main (commit-raíz) ec7d703] Este es mi primer commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hellogit.py
+
+O git commit -m "Este es el primer commit"
+
+> git status
+En la rama main
+nada para hacer commit, el árbol de trabajo está limpio
+
+PARA VER LA FOTOGRAFIA GUARDADA DEL COMMIT:
+git log
+  commit ec7d703a95377bc0f40cde6f1415cf3cae63af1a (HEAD -> main)
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 22:27:13 2023 +0200
+
+    Este es mi primer commit
+
+Creo archivo hellogit2:
+Añado:    print("Hello Git2")
+  > git status
+En la rama main
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+        hellogit2.py
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+
+Añado con 2ºarchivo:
+git add hellogit2.py
+
+Para ver los commits:
+> git log
+commit 8017564dddaa8b07220c932cc027d3ff53f10b60 (HEAD -> main)
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 22:35:39 2023 +0200
+
+    Este el el segundo commit
+
+commit ec7d703a95377bc0f40cde6f1415cf3cae63af1a
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 22:27:13 2023 +0200
+
+    Este es mi primer commit
+////////////////////
+
+Estamos en la rama main con dos commits
+
+////////////////////
+////////////////////
+
+Añado numeros y un print a los dos ficheros:
+> git status
+En la rama main
+Cambios no rastreados para el commit:
+  (usa "git add <archivo>..." para actualizar lo que será confirmado)
+  (usa "git restore <archivo>..." para descartar los cambios en el directorio de trabajo)
+        modificados:     hellogit.py
+        modificados:     hellogit2.py
+
+sin cambios agregados al commit (usa "git add" y/o "git commit -a")
+
+Git CHECKOUT Y RESET
+
+Quiero el archivo hellogit2.py regrese al estado anterior:
+git checkout hellogit2.py
+
+///////////////////////////////////////
+///////////////////////////////////////
+
+añado a archivo hellogit.py New y hago commit 3º
+> git log
+commit 96a320a5d6766cd3228e5e0a9e96bb1badb36eca (HEAD -> main)
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 22:52:28 2023 +0200
+
+    Se actualiza el texto del print de archivo hellogit.py
+
+commit 8017564dddaa8b07220c932cc027d3ff53f10b60
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 22:35:39 2023 +0200
+
+    Este el el segundo commit
+
+commit ec7d703a95377bc0f40cde6f1415cf3cae63af1a
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 22:27:13 2023 +0200
+
+    Este es mi primer commit
+
+
+ ~/Documentos/Hello Git  on main
+
+TENEMOS 3 commits
+
+//////////////////////////////////////////////////
+OTRA MANERA DE VER:
+
+> git log --graph
+* commit 96a320a5d6766cd3228e5e0a9e96bb1badb36eca (HEAD -> main)
+| Author: NEBULA1978 <rpascualey@gmail.com>
+| Date:   Fri Jun 16 22:52:28 2023 +0200
+|
+|     Se actualiza el texto del print de archivo hellogit.py
+|
+* commit 8017564dddaa8b07220c932cc027d3ff53f10b60
+| Author: NEBULA1978 <rpascualey@gmail.com>
+| Date:   Fri Jun 16 22:35:39 2023 +0200
+|
+|     Este el el segundo commit
+|
+* commit ec7d703a95377bc0f40cde6f1415cf3cae63af1a
+  Author: NEBULA1978 <rpascualey@gmail.com>
+  Date:   Fri Jun 16 22:27:13 2023 +0200
+
+      Este es mi primer commit
+
+
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+OTRA MANERA DE VER:
+> git log --graph --pretty=oneline
+* 96a320a5d6766cd3228e5e0a9e96bb1badb36eca (HEAD -> main) Se actualiza el texto del print de archivo hellogit.py
+* 8017564dddaa8b07220c932cc027d3ff53f10b60 Este el el segundo commit
+* ec7d703a95377bc0f40cde6f1415cf3cae63af1a Este es mi primer commit
+
+
+ ~/Do/Hello Git  on main
+
+ ///////////////////////////////
+OTRA MANERA DE VER:
+> git log --graph --decorate --all --oneline
+* 96a320a (HEAD -> main) Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 Este es mi primer commit
+
+
+ ~/Do/Hello Git  on main
+
+///////////////////////////////
+
+Creo un ALIAS:
+> git config --global alias.tree "log --graph --decorate --all --oneline"
+
+
+ ~/Do/Hello Git  on main
+
+Para ver con el alias creado:
+> git tree
+* 96a320a (HEAD -> main) Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 Este es mi primer commit
+
+
+ ~/Do/Hello Git  on main
+///////////////////////////////
+///////////////////////////////
+GITIGNORE
+Creo archivo .gitignore en la raiz del proyecto añado:
+**/.limpio-git.txt(asi me da fallo)
+ASI BIEN:limpio-git.txt
+
+> git status
+En la rama main
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+        .gitignore
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+
+
+ ~/Do/Hello Git  on main ?1
+
+ YA no veo el archivo BIEN
+
+Añado el archivo .gitignore
+git add .gitignore
+
+Creo commit :
+git commit -m "Añado archivo .gitignore"
+
+> git status
+En la rama main
+nada para hacer commit, el árbol de trabajo está limpio
+
+
+ ~/Do/Hello Git  on main    
+ ///////////////////////
+ ///////////////////////
+
+GIT DIFF
+
+en archivo hellogit.py añado texto y para ver cambios:
+
+>  git diff hellogit.py
+
+diff --git a/hellogit.py b/hellogit.py
+index 4a4878e..c39719b 100644
+--- a/hellogit.py
++++ b/hellogit.py
+@@ -1 +1 @@
+-print("New Hello Git")
+\ No newline at end of file
++print("New Hello Git with changes!")
+\ No newline at end of file
+                                                                                                                                       
+VEO EL ANTERIOR Y LA NUEVA LINEA
+
+///////////////////////////////////////////
+///////////////////////////////////////////
+
+DESPLAZAMIENTOS:
+Para ir a un commit anterior, he hecho cambios y no he guardado en hellogit.py:
+
+> git checkout ec7d703a95377bc0f40cde6f1415cf3cae63af1a
+error: Los cambios locales de los siguientes archivos serán sobrescritos por checkout:
+        hellogit.py
+Por favor realiza un commit con los cambios o un stash antes de cambiar de rama.
+Abortando
+                                                                                                                                       
+Para descartar cambios de archivo y vuelve al estado anterior:
+
+> git checkout hellogit.py
+Actualizada 1 ruta desde el índice
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on main     
+
+ Voy al estado del primer commit y solo tengo un archivo:
+
+ > git checkout ec7d703a95377bc0f40cde6f1415cf3cae63af1a
+Nota: cambiando a 'ec7d703a95377bc0f40cde6f1415cf3cae63af1a'.
+
+Te encuentras en estado 'detached HEAD'. Puedes revisar por aquí, hacer
+cambios experimentales y hacer commits, y puedes descartar cualquier
+commit que hayas hecho en este estado sin impactar a tu rama realizando
+otro checkout.
+
+Si quieres crear una nueva rama para mantener los commits que has creado,
+puedes hacerlo (ahora o después) usando -c con el comando checkout. Ejemplo:
+
+  git switch -c <nombre-de-nueva-rama>
+
+O deshacer la operación con:
+
+  git switch -
+
+Desactiva este aviso poniendo la variable de config advice.detachedHead en false
+
+HEAD está ahora en ec7d703 Este es mi primer commit
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on @ec7d703a ?1     
+
+    > git checkout HEAD
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on @ec7d703a ?1       
+
+ > git log
+commit ec7d703a95377bc0f40cde6f1415cf3cae63af1a (HEAD)
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 22:27:13 2023 +0200
+
+    Este es mi primer commit
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on @ec7d703a ?1        
+
+ > git tree
+* ee4cfbc (main) Añado archivo .gitignore
+* 96a320a Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 (HEAD) Este es mi primer commit
+                                                                                                                                       
+PARA VOLVER AL ULTIMO COMMIT:
+> git checkout ee4cfbc
+La posición previa de HEAD era ec7d703 Este es mi primer commit
+HEAD está ahora en ee4cfbc Añado archivo .gitignore
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on @ee4cfbca        
+
+
+///////////////////////////////////////////
+PARA VOLVER A LA RAMA MAIN:
+> git checkout main
+Cambiado a rama 'main'
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on main           
+
+///////////////////////////////////////////
+GIT RESET HARD Y REFLOG
+
+
+
+
+///////////////////////////////////////////
+///////////////////////////////////////////
