@@ -309,10 +309,512 @@ Cambiado a rama 'main'
  ~/Documentos/Hello Git  on main           
 
 ///////////////////////////////////////////
-GIT RESET HARD Y REFLOG
+GIT RESET HARD Y REFLOG(log completo todos los commits)
+
+Para ir al segundo commit con HEAD y luego volvemos al commit final:
+
+next@rases:~/Documentos/Hello Git$ git status
+HEAD desacoplada en e28eaf4
+nada para hacer commit, el árbol de trabajo está limpio
+next@rases:~/Documentos/Hello Git$ git branch
+* (HEAD desacoplado en e28eaf4)
+  main
+next@rases:~/Documentos/Hello Git$ git checkout main
+Cambiado a rama 'main'
+next@rases:~/Documentos/Hello Git$ git status
+En la rama main
+nada para hacer commit, el árbol de trabajo está limpio
+next@rases:~/Documentos/Hello Git$ git tree
+* e28eaf4 (HEAD -> main) Pasos GIT curso MOUREDEV
+* ee4cfbc Añado archivo .gitignore
+* 96a320a Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 Este es mi primer commit
+next@rases:~/Documentos/Hello Git$ git reset --hard 96a320a
+HEAD está ahora en 96a320a Se actualiza el texto del print de archivo hellogit.py
+next@rases:~/Documentos/Hello Git$ git status
+En la rama main
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+        limpio-git.txt
+        pasos.txt
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+next@rases:~/Documentos/Hello Git$ git log
+commit 96a320a5d6766cd3228e5e0a9e96bb1badb36eca (HEAD -> main)
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 22:52:28 2023 +0200
+
+    Se actualiza el texto del print de archivo hellogit.py
+
+commit 8017564dddaa8b07220c932cc027d3ff53f10b60
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 22:35:39 2023 +0200
+
+    Este el el segundo commit
+
+commit ec7d703a95377bc0f40cde6f1415cf3cae63af1a
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 22:27:13 2023 +0200
+
+    Este es mi primer commit
+next@rases:~/Documentos/Hello Git$ git reflog
+96a320a (HEAD -> main) HEAD@{0}: reset: moving to 96a320a
+e28eaf4 HEAD@{1}: checkout: moving from e28eaf49e007596f7f222048d66d8e40e33f21ff to main
+e28eaf4 HEAD@{2}: checkout: moving from ec7d703a95377bc0f40cde6f1415cf3cae63af1a to e28eaf4
+ec7d703 HEAD@{3}: checkout: moving from main to ec7d703a95377bc0f40cde6f1415cf3cae63af1a
+e28eaf4 HEAD@{4}: Branch: renamed refs/heads/main to refs/heads/main
+e28eaf4 HEAD@{6}: Branch: renamed refs/heads/main to refs/heads/main
+e28eaf4 HEAD@{8}: Branch: renamed refs/heads/main to refs/heads/main
+e28eaf4 HEAD@{10}: commit: Pasos GIT curso MOUREDEV
+ee4cfbc HEAD@{11}: checkout: moving from ee4cfbcabb543341cb30d1cd262bc9157279c6c5 to main
+ee4cfbc HEAD@{12}: checkout: moving from ec7d703a95377bc0f40cde6f1415cf3cae63af1a to ee4cfbc
+ec7d703 HEAD@{13}: checkout: moving from main to ec7d703a95377bc0f40cde6f1415cf3cae63af1a
+ee4cfbc HEAD@{14}: commit: Añado archivo .gitignore
+96a320a (HEAD -> main) HEAD@{15}: commit: Se actualiza el texto del print de archivo hellogit.py
+8017564 HEAD@{16}: commit: Este el el segundo commit
+ec7d703 HEAD@{17}: commit (initial): Este es mi primer commit
+next@rases:~/Documentos/Hello Git$ git checkout e28eaf49e007596f7f222048d66d8e40e33f21ff
+error: Los siguientes archivos sin seguimiento en el árbol de trabajo serán sobrescritos al actualizar el árbol de trabajo:
+        pasos.txt
+Por favor, muévelos o elimínalos antes de cambiar de rama.
+Abortando
+next@rases:~/Documentos/Hello Git$ git tree
+* 96a320a (HEAD -> main) Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 Este es mi primer commit
+next@rases:~/Documentos/Hello Git$ git checkout main
+Ya en 'main'
+next@rases:~/Documentos/Hello Git$ git reset --hard e28eaf49e007596f7f222048d66d8e40e33f21ff
+HEAD está ahora en e28eaf4 Pasos GIT curso MOUREDEV
+next@rases:~/Documentos/Hello Git$ git log
+commit e28eaf49e007596f7f222048d66d8e40e33f21ff (HEAD -> main)
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 23:56:24 2023 +0200
+
+    Pasos GIT curso MOUREDEV
+
+commit ee4cfbcabb543341cb30d1cd262bc9157279c6c5
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 23:10:41 2023 +0200
+
+    Añado archivo .gitignore
+
+commit 96a320a5d6766cd3228e5e0a9e96bb1badb36eca
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 22:52:28 2023 +0200
+
+    Se actualiza el texto del print de archivo hellogit.py
+
+commit 8017564dddaa8b07220c932cc027d3ff53f10b60
+Author: NEBULA1978 <rpascualey@gmail.com>
+next@rases:~/Documentos/Hello Git$ 
 
 
 
 
 ///////////////////////////////////////////
 ///////////////////////////////////////////
+
+GIT TAG:
+Etiqueta ,puntos importantes queremos wardar esas referencias,las versiones .
+
+next@rases:~/Documentos/Hello Git$ git status
+En la rama main
+nada para hacer commit, el árbol de trabajo está limpio
+next@rases:~/Documentos/Hello Git$ git tag clase_1
+next@rases:~/Documentos/Hello Git$ git log
+commit e28eaf49e007596f7f222048d66d8e40e33f21ff (HEAD -> main, tag: clase_1)
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 23:56:24 2023 +0200
+
+    Pasos GIT curso MOUREDEV
+
+commit ee4cfbcabb543341cb30d1cd262bc9157279c6c5
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 23:10:41 2023 +0200
+
+    Añado archivo .gitignore
+
+commit 96a320a5d6766cd3228e5e0a9e96bb1badb36eca
+Author: NEBULA1978 <rpascualey@gmail.com>
+Date:   Fri Jun 16 22:52:28 2023 +0200
+
+    Se actualiza el texto del print de archivo hellogit.py
+
+commit 8017564dddaa8b07220c932cc027d3ff53f10b60
+Author: NEBULA1978 <rpascualey@gmail.com>
+:
+
+next@rases:~/Documentos/Hello Git$ git tree
+* e28eaf4 (HEAD -> main, tag: clase_1) Pasos GIT curso MOUREDEV
+* ee4cfbc Añado archivo .gitignore
+* 96a320a Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 Este es mi primer commit
+next@rases:~/Documentos/Hello Git$ 
+
+
+next@rases:~/Documentos/Hello Git$ git status
+En la rama main
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+        hellogit3.py
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+next@rases:~/Documentos/Hello Git$ git add .
+next@rases:~/Documentos/Hello Git$ git status
+En la rama main
+Cambios a ser confirmados:
+  (usa "git restore --staged <archivo>..." para sacar del área de stage)
+        nuevos archivos: hellogit3.py
+
+next@rases:~/Documentos/Hello Git$ 
+
+next@rases:~/Documentos/Hello Git$ git tree
+* 38cf867 (HEAD -> main) Este es mi sexto commit
+* e28eaf4 (tag: clase_1) Pasos GIT curso MOUREDEV
+* ee4cfbc Añado archivo .gitignore
+* 96a320a Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 Este es mi primer commit
+next@rases:~/Documentos/Hello Git$ 
+
+
+Voy al tag:
+
+next@rases:~/Documentos/Hello Git$ git checkout tags/clase_1
+Nota: cambiando a 'tags/clase_1'.
+
+Te encuentras en estado 'detached HEAD'. Puedes revisar por aquí, hacer
+cambios experimentales y hacer commits, y puedes descartar cualquier
+commit que hayas hecho en este estado sin impactar a tu rama realizando
+otro checkout.
+
+Si quieres crear una nueva rama para mantener los commits que has creado,
+puedes hacerlo (ahora o después) usando -c con el comando checkout. Ejemplo:
+
+  git switch -c <nombre-de-nueva-rama>
+
+O deshacer la operación con:
+
+  git switch -
+
+Desactiva este aviso poniendo la variable de config advice.detachedHead en false
+
+HEAD está ahora en e28eaf4 Pasos GIT curso MOUREDEV
+next@rases:~/Documentos/Hello Git$ 
+
+Tenemos el head en el tag:
+next@rases:~/Documentos/Hello Git$ git tree
+* 38cf867 (main) Este es mi sexto commit
+* e28eaf4 (HEAD, tag: clase_1) Pasos GIT curso MOUREDEV
+* ee4cfbc Añado archivo .gitignore
+* 96a320a Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 Este es mi primer commit
+next@rases:~/Documentos/Hello Git$ 
+
+VUELVO AL ULTIMO COMMIT:
+next@rases:~/Documentos/Hello Git$ git checkout 38cf867
+La posición previa de HEAD era e28eaf4 Pasos GIT curso MOUREDEV
+HEAD está ahora en 38cf867 Este es mi sexto commit
+next@rases:~/Documentos/Hello Git$ 
+
+EL comado revert vale para elminar un commit especifico
+
+
+///////////////////////////////////////////
+///////////////////////////////////////////
+
+GIT BRANCH Y SWICH
+
+
+
+
+ACOPLO LA RAMA MAIN:
+next@rases:~/Documentos/Hello Git$ git status
+HEAD desacoplada en 38cf867
+nada para hacer commit, el árbol de trabajo está limpio
+next@rases:~/Documentos/Hello Git$ git checkout main
+Cambiado a rama 'main'
+next@rases:~/Documentos/Hello Git$ git status
+En la rama main
+nada para hacer commit, el árbol de trabajo está limpio
+next@rases:~/Documentos/Hello Git$ 
+
+
+CREO RAMA login:
+
+git brach login
+> git tree
+* 38cf867 (HEAD -> main, login) Este es mi sexto commit
+* e28eaf4 (tag: clase_1) Pasos GIT curso MOUREDEV
+* ee4cfbc Añado archivo .gitignore
+* 96a320a Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 Este es mi primer commit
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on main           
+
+Para ir a rama login:
+git swich login
+> git switch login
+
+Cambiado a rama 'login'
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login            
+
+> git status
+En la rama login
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+        login.py
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+                                                                                                                                       
+>  git add .
+                                                                                                                                       
+> git commit -m "Mensage login"
+[login 35ce833] Mensage login
+ 1 file changed, 1 insertion(+)
+ create mode 100644 login.py
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login     
+
+ VAMOS DE LA RAMA login a la main:
+ git sCambiado a rama 'main'
+                                                                                                                                       
+witch main
+
+> git switch login
+
+Cambiado a rama 'login'
+                                                                                                                                       
+> git tree
+* 35ce833 (HEAD -> login) Mensage login
+* 38cf867 (main) Este es mi sexto commit
+* e28eaf4 (tag: clase_1) Pasos GIT curso MOUREDEV
+* ee4cfbc Añado archivo .gitignore
+* 96a320a Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 Este es mi primer commit
+                                                                                                                                       
+> git switch main
+Cambiado a rama 'main'
+                                                                                                                                       
+> git tree
+* 35ce833 (login) Mensage login
+* 38cf867 (HEAD -> main) Este es mi sexto commit
+* e28eaf4 (tag: clase_1) Pasos GIT curso MOUREDEV
+* ee4cfbc Añado archivo .gitignore
+* 96a320a Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 Este es mi primer commit
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on main                  
+
+Para traer los datos de la rama login a la main con merge creamos un commit nuvo en la rama main:
+ Para mergear ramas :
+Se abre archivo y wardo;
+> git merge main
+Merge made by the 'ort' strategy.
+ hellogit3.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login     
+
+> git tree
+*   8ee1559 (HEAD -> login) Merge branch 'main' into login
+|\  
+| * 15ba3ef (main) Git 3 v2
+* | 35ce833 Mensage login
+|/  
+* 38cf867 Este es mi sexto commit
+* e28eaf4 (tag: clase_1) Pasos GIT curso MOUREDEV
+* ee4cfbc Añado archivo .gitignore
+* 96a320a Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 Este es mi primer commit
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login    
+
+
+                                                                                                                                        
+>  git add .
+                                                                                                                                       
+> git commit -m "Git 3 login"
+[login 66b6884] Git 3 login
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+                                                                                                                                       
+Cambiamos de la rama login a main:
+> git switch main
+Cambiado a rama 'main'
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on main     
+
+ > git add .
+                                                                                                                                       
+> git commit -m "Git 3 v3"
+[main 5945bdc] Git 3 v3
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on main   
+
+ > git switch login
+Cambiado a rama 'login'
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login    
+
+ > git merge main
+Auto-fusionando hellogit3.py
+CONFLICTO (contenido): Conflicto de fusión en hellogit3.py
+Fusión automática falló; arregle los conflictos y luego realice un commit con el resultado.
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login merge ~1            
+
+ > git tree
+* e5e5813 (HEAD -> login) Git 3 v3
+*   6c82ad8 Merge branch 'main' into login
+|\  
+| * 5945bdc (main) Git 3 v3
+* | 66b6884 Git 3 login
+* | 8ee1559 Merge branch 'main' into login
+|\| 
+| * 15ba3ef Git 3 v2
+* | 35ce833 Mensage login
+|/  
+* 38cf867 Este es mi sexto commit
+* e28eaf4 (tag: clase_1) Pasos GIT curso MOUREDEV
+* ee4cfbc Añado archivo .gitignore
+* 96a320a Se actualiza el texto del print de archivo hellogit.py
+* 8017564 Este el el segundo commit
+* ec7d703 Este es mi primer commit
+                                                                                                                                       
+> git switch main
+error: Los cambios locales de los siguientes archivos serán sobrescritos por checkout:
+        login.py
+Por favor realiza un commit con los cambios o un stash antes de cambiar de rama.
+Abortando
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login !1    
+
+Genero un stash es un commit que solo voy a ver yo ,no afecta a las ramas:
+> git stash
+Directorio de trabajo y estado de índice WIP on login: e5e5813 Git 3 v3 guardados
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login *1              
+
+ > git stash list
+stash@{0}: WIP on login: e5e5813 Git 3 v3
+                                                                                                                                       
+> git switch main
+Cambiado a rama 'main'
+                                                                                                                                       
+> git switch login
+Cambiado a rama 'login'
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login *1                
+
+ Traeme todo lo que tenia wardado para trabajar con ellor:
+ > git stash pop
+En la rama login
+Cambios no rastreados para el commit:
+  (usa "git add <archivo>..." para actualizar lo que será confirmado)
+  (usa "git restore <archivo>..." para descartar los cambios en el directorio de trabajo)
+        modificados:     login.py
+
+sin cambios agregados al commit (usa "git add" y/o "git commit -a")
+Descartado refs/stash@{0} (3842b4bee0e5c835643b18fcb1651d81ce8f7db9)
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login !1          
+
+ > git add .
+                                                                                                                                       
+> git commit -m "Login v2"
+[login 93a4880] Login v2
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login        
+
+ > git stash
+Directorio de trabajo y estado de índice WIP on login: 93a4880 Login v2 guardados
+                                                                                                                                       
+
+ ~/> git stash
+Directorio de trabajo y estado de índice WIP on login: 93a4880 Login v2 guardados
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login *1        
+ 
+ Documentos/Hello Git  on login *1        
+
+Para eliminar el stash:
+git stash drop
+
+Descartado refs/stash@{0} (f7d945cb98c8acf974d5ca9a4af0179187a44801)
+                                                                                                                                       
+
+ ~/Documentos/Hello Git  on login                
+
+
+ 
+///////////////////////////////////////////
+///////////////////////////////////////////
+
+REINTEGRACION EN GIT:
+
+2h08
+
+///////////////////////////////////////////
+///////////////////////////////////////////
+
+Para subir tu repositorio a GitHub, debes seguir los siguientes pasos:
+
+    Crea un repositorio en GitHub: Ve a la página principal de GitHub y haz clic en el botón "New" (Nuevo) para crear un nuevo repositorio. Dale un nombre al repositorio y, opcionalmente, una descripción. Puedes dejar las demás opciones como están y luego haz clic en "Create repository" (Crear repositorio).
+
+    Configura el origen remoto: En tu terminal, dentro del directorio de tu repositorio local, ejecuta el siguiente comando para configurar el origen remoto:
+
+    csharp
+
+git remote add origin <URL del repositorio en GitHub>
+
+Reemplaza <URL del repositorio en GitHub> por la URL del repositorio que creaste en el paso anterior. Esto conectará tu repositorio local con el repositorio remoto en GitHub.
+
+Verifica el origen remoto: Puedes ejecutar el siguiente comando para verificar que el origen remoto se configuró correctamente:
+
+git remote -v
+
+Deberías ver la URL de tu repositorio de GitHub listada como origin.
+
+Sube tus cambios: Antes de subir tus cambios, asegúrate de que todos los cambios locales estén confirmados. Puedes usar git status para verificar el estado de tus archivos. Luego, ejecuta los siguientes comandos:
+
+css
+
+git branch -M main
+git push -u origin main
+
+El primer comando renombra la rama actual a main. El segundo comando sube tus cambios al repositorio remoto en GitHub y establece la rama main como la rama predeterminada.
+
+Para actualizar desde pc cuando añado desde github el README:
+> git pull
+
+Para subir desde pc a github con:
+ git push
+
+ 
