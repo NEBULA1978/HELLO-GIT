@@ -780,7 +780,7 @@ Descartado refs/stash@{0} (f7d945cb98c8acf974d5ca9a4af0179187a44801)
 REINTEGRACION EN GIT:
 
 2h08
-
+2:22Empieza github
 ///////////////////////////////////////////
 ///////////////////////////////////////////
 
